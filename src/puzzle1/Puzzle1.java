@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -49,7 +50,7 @@ public class Puzzle1 {
     public int[] findThreeFactors(int targetValue) {
         for (Integer currentInt : expenses) {
             int[] twoFactors = findTwoFactors(targetValue - currentInt);
-            if (twoFactors != null) {
+            if (twoFactors != null && twoFactors[0] != currentInt && twoFactors[1] != currentInt) {
                 return new int[] {twoFactors[0], twoFactors[1], currentInt};
             }
         }

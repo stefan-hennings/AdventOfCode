@@ -13,7 +13,7 @@ public class Puzzle1 {
     public Puzzle1() {
         readFile();
         Collections.sort(expenses);
-        findTwoFactors();
+        findTwoFactors(2020);
     }
 
     public void readFile() {
@@ -27,13 +27,13 @@ public class Puzzle1 {
         }
     }
 
-    public void findTwoFactors() {
+    public void findTwoFactors(int targetValue) {
         int smallIndex = 0;
         int bigIndex = expenses.size()-1;
         while (true) {
-            if (expenses.get(smallIndex) + expenses.get(bigIndex) > 2020) {
+            if (expenses.get(smallIndex) + expenses.get(bigIndex) > targetValue) {
                 bigIndex--;
-            } else if (expenses.get(smallIndex) + expenses.get(bigIndex) < 2020) {
+            } else if (expenses.get(smallIndex) + expenses.get(bigIndex) < targetValue) {
                 smallIndex++;
             } else {
                 System.out.printf("Found %d and %d. Final product is %d.\n",
@@ -45,6 +45,8 @@ public class Puzzle1 {
     }
 
     public static void main(String[] args) {
+        long startTime = System.nanoTime();
         new Puzzle1();
+        System.out.println(System.nanoTime() - startTime);
     }
 }

@@ -13,7 +13,11 @@ public class Puzzle1 {
     public Puzzle1() {
         readFile();
         Collections.sort(expenses);
-        findTwoFactors(2020);
+        int[] twoFactors = findTwoFactors(2020);
+        System.out.printf("Found %d and %d. Final product is %d.%n", twoFactors[0], twoFactors[1], twoFactors[0]*twoFactors[1] );
+        int[] threeFactors = findThreeFactors(2020);
+        System.out.printf("Found %d, %d and %d. Final product is %d%n", threeFactors[0], threeFactors[1], threeFactors[2],
+                threeFactors[0] * threeFactors[1] * threeFactors[2]);
     }
 
     public void readFile() {
@@ -27,26 +31,35 @@ public class Puzzle1 {
         }
     }
 
-    public void findTwoFactors(int targetValue) {
+    public int[] findTwoFactors(int targetValue) {
         int smallIndex = 0;
         int bigIndex = expenses.size()-1;
-        while (true) {
+        for (int i = 1; i < expenses.size(); i++){
             if (expenses.get(smallIndex) + expenses.get(bigIndex) > targetValue) {
                 bigIndex--;
             } else if (expenses.get(smallIndex) + expenses.get(bigIndex) < targetValue) {
                 smallIndex++;
             } else {
-                System.out.printf("Found %d and %d. Final product is %d.\n",
-                        expenses.get(smallIndex), expenses.get(bigIndex),
-                        expenses.get(smallIndex) * expenses.get(bigIndex));
-                break;
+                return new int[]{expenses.get(smallIndex), expenses.get(bigIndex)};
             }
         }
+        return null;
+    }
+
+    public int[] findThreeFactors(int targetValue) {
+        for (Integer currentInt : expenses) {
+            int[] twoFactors = findTwoFactors(targetValue - currentInt);
+            if (twoFactors != null) {
+                return new int[] {twoFactors[0], twoFactors[1], currentInt};
+            }
+        }
+        return null;
     }
 
     public static void main(String[] args) {
         long startTime = System.nanoTime();
         new Puzzle1();
-        System.out.println(System.nanoTime() - startTime);
+        System.out.printf("Execution time: %f milliseconds%n", ((double)System.nanoTime() - startTime)/1000000);
+        System.out.println();
     }
 }

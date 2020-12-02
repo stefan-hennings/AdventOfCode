@@ -10,7 +10,7 @@ public class Puzzle1 {
     List<Integer> expenses = new ArrayList<>();
 
     public Puzzle1() {
-        expenses = Utility.readIntegerFile("src\\puzzle1\\puzzle1input.txt");
+        expenses = Utility.readIntegerFile("puzzle1");
         Collections.sort(expenses);
         int[] twoFactors = findTwoFactors(2020);
         System.out.printf("Found %d and %d. Final product is %d.%n", twoFactors[0], twoFactors[1], twoFactors[0] * twoFactors[1]);

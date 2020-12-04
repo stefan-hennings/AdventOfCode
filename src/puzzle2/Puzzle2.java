@@ -15,15 +15,19 @@ public class Puzzle2 {
                         line[2].charAt(0),
                         line[3]))
                 .collect(Collectors.toList());
-        System.out.println(passwordList);
+
         System.out.println(passwordList.stream()
                 .filter(Password::isValidOldPassword)
-                .count());System.out.println(passwordList.stream()
+                .count());
+
+        System.out.println(passwordList.stream()
                 .filter(Password::isValidNewPassword)
                 .count());
     }
 
     public static void main(String[] args) {
+        long startTime = System.nanoTime();
         new Puzzle2();
+        System.out.printf("Execution time: %f milliseconds%n", ((double) System.nanoTime() - startTime) / 1000000);
     }
 }

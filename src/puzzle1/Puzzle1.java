@@ -6,10 +6,9 @@ import java.util.Collections;
 import java.util.List;
 
 public class Puzzle1 {
-    List<Integer> expenses;
+    List<Integer> expenses = Utility.readIntegerFile("puzzle1");
 
     public Puzzle1() {
-        expenses = Utility.readIntegerFile("puzzle1");
         Collections.sort(expenses);
         int[] twoFactors = findTwoFactors(2020);
         System.out.printf("Found %d and %d. Final product is %d.%n", twoFactors[0], twoFactors[1], twoFactors[0] * twoFactors[1]);

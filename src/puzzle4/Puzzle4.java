@@ -34,31 +34,6 @@ public class Puzzle4 {
         passportList.add(passport);
     }
 
-    private ArrayList<Passport> readPassportsFromFile() {
-        ArrayList<Passport> passportList = new ArrayList<>();
-        try (Scanner scanner = new Scanner(new File("puzzle4.bat"))) {
-            String line;
-            Passport passport = new Passport();
-            int counter = 0;
-            while (scanner.hasNextLine()) {
-                while (true) {
-                    System.out.println(++counter);
-                    line = scanner.nextLine();
-                    if (line == null || line.equals("")) {
-                        passportList.add(passport);
-                        break;
-                    }
-                    processLine(line, passport);
-                }
-
-
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        return passportList;
-    }
-
     private void processLine(String line, Passport passport) {
         System.out.println("Processing line " + line);
         String[] split = line.split(" ");

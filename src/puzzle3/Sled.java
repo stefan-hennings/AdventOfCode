@@ -21,4 +21,9 @@ public class Sled {
         this.row = row;
         this.column = column;
     }
+
+    public void move(int right, int down) {
+        this.row += right;
+        this.column += down;
+    }
 }

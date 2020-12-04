@@ -2,11 +2,8 @@ package puzzle4;
 
 import utility.Utility;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class Puzzle4 {
     List<String> rawPassportList = Utility.readStringFile("puzzle4.bat");
@@ -17,6 +14,8 @@ public class Puzzle4 {
 //        rawPassportList.forEach(System.out::println);
         processPassports();
         System.out.println(countValidPasswords() + " valid passwords.");
+
+        System.out.println(countValidPasswordsPart2() + " valid passwords.");
     }
 
     private void processPassports() {
@@ -45,6 +44,12 @@ public class Puzzle4 {
     private long countValidPasswords() {
         return passportList.stream()
                 .filter(Passport::isValidPassport)
+                .count();
+    }
+
+    private long countValidPasswordsPart2() {
+        return passportList.stream()
+                .filter(Passport::isValidPassportForPart2)
                 .count();
     }
 

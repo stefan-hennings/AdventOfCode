@@ -12,4 +12,26 @@ public class Password {
         this.requiredChar = requiredChar;
         this.password = password;
     }
+
+    @Override
+    public String toString() {
+        return "Password{" +
+                "lowLimit=" + lowLimit +
+                ", highLimit=" + highLimit +
+                ", requiredChar=" + requiredChar +
+                ", password='" + password + '\'' +
+                '}';
+    }
+
+
+    public boolean isValidOldPassword() {
+        int counter = 0;
+        for (int i = 0; i < password.length(); i++) {
+            if (password.charAt(i) == requiredChar) {
+                counter++;
+            }
+        }
+
+        return (counter >= lowLimit && counter <= highLimit);
+    }
 }

@@ -1,10 +1,10 @@
 package puzzle2;
 
 public class Password {
-    private int lowLimit;
-    private int highLimit;
-    private char requiredChar;
-    private String password;
+    private final int lowLimit;
+    private final int highLimit;
+    private final char requiredChar;
+    private final String password;
 
     public Password(int lowLimit, int highLimit, char requiredChar, String password) {
         this.lowLimit = lowLimit;
@@ -33,5 +33,9 @@ public class Password {
         }
 
         return (counter >= lowLimit && counter <= highLimit);
+    }
+
+    public boolean isValidNewPassword() {
+        return (password.charAt(lowLimit - 1) == requiredChar ^ password.charAt(highLimit - 1) == requiredChar);
     }
 }

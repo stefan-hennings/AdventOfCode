@@ -1,11 +1,10 @@
 package puzzle2;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Puzzle2 {
-    List<Password> passwordList = new ArrayList<>();
+    List<Password> passwordList;
     List<String> rawDataList = utility.Utility.readStringFile("puzzle2");
 
     public Puzzle2() {
@@ -19,6 +18,8 @@ public class Puzzle2 {
         System.out.println(passwordList);
         System.out.println(passwordList.stream()
                 .filter(Password::isValidOldPassword)
+                .count());System.out.println(passwordList.stream()
+                .filter(Password::isValidNewPassword)
                 .count());
     }
 

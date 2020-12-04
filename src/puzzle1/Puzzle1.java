@@ -1,13 +1,11 @@
 package puzzle1;
 
 import utility.Utility;
-
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class Puzzle1 {
-    List<Integer> expenses = new ArrayList<>();
+    List<Integer> expenses;
 
     public Puzzle1() {
         expenses = Utility.readIntegerFile("puzzle1");
@@ -22,10 +20,12 @@ public class Puzzle1 {
     public int[] findTwoFactors(int targetValue) {
         int smallIndex = 0;
         int bigIndex = expenses.size() - 1;
+        int sum;
         for (int i = 1; i < expenses.size(); i++) {
-            if (expenses.get(smallIndex) + expenses.get(bigIndex) > targetValue) {
+            sum = expenses.get(smallIndex) + expenses.get(bigIndex);
+            if (sum > targetValue) {
                 bigIndex--;
-            } else if (expenses.get(smallIndex) + expenses.get(bigIndex) < targetValue) {
+            } else if (sum < targetValue) {
                 smallIndex++;
             } else {
                 return new int[]{expenses.get(smallIndex), expenses.get(bigIndex)};
@@ -38,7 +38,7 @@ public class Puzzle1 {
         for (Integer currentInt : expenses) {
             int[] twoFactors = findTwoFactors(targetValue - currentInt);
             if (twoFactors != null && twoFactors[0] != currentInt && twoFactors[1] != currentInt) {
-                return new int[]{twoFactors[0], twoFactors[1], currentInt};
+                return new int[]{currentInt, twoFactors[0], twoFactors[1]};
             }
         }
         return null;

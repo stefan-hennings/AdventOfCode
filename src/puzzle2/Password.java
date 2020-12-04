@@ -36,6 +36,7 @@ public class Password {
     }
 
     public boolean isValidNewPassword() {
-        return (password.charAt(lowLimit - 1) == requiredChar ^ password.charAt(highLimit - 1) == requiredChar);
+        return (password.length() >= lowLimit && password.charAt(lowLimit - 1) == requiredChar) ^
+                (password.length() >= highLimit && password.charAt(highLimit - 1) == requiredChar);
     }
 }

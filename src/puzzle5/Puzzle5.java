@@ -19,13 +19,13 @@ public class Puzzle5 {
         System.out.println("My seat ID is " + findMySeatID());
     }
 
-    private int findMySeatID() {
+    private BoardingPass findMySeatID() {
         for (int i = 0; i < boardingPassList.size(); i++) {
-            if (boardingPassList.get(i+1).seatID - boardingPassList.get(i).seatID == 2) {
-                return boardingPassList.get(i).seatID + 1;
+            if (boardingPassList.get(i+1).getSeatID() - boardingPassList.get(i).getSeatID() == 2) {
+                return new BoardingPass(boardingPassList.get(i).getSeatID() + 1);
             }
         }
-        return -1;
+        return null;
     }
 
     public static void main(String[] args) {

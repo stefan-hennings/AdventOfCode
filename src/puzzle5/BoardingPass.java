@@ -1,12 +1,15 @@
 package puzzle5;
 
 public class BoardingPass implements Comparable<BoardingPass>{
-    String originalString;
-    int row = 0;
-    int column = 0;
-    int seatID = 0;
+    private String originalString;
+    private int row = 0;
+    private int column = 0;
+    private int seatID = 0;
 
-    public BoardingPass() {
+    public BoardingPass(int seatID) {
+        this.seatID = seatID;
+        row = seatID / 8;
+        column = seatID % 8;
     }
 
     public BoardingPass(String string) {
@@ -43,6 +46,14 @@ public class BoardingPass implements Comparable<BoardingPass>{
 
     @Override
     public String toString() {
-        return String.format("Row %d, column %d, seat ID %d, original string %s", row, column, seatID, originalString);
+        if (originalString != null) {
+            return String.format("Row %d, column %d, seat ID %d, original string %s", row, column, seatID, originalString);
+        } else {
+            return String.format("Row %d, column %d, seat ID %d", row, column, seatID);
+        }
+    }
+
+    public int getSeatID() {
+        return seatID;
     }
 }

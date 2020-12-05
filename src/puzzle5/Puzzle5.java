@@ -15,7 +15,7 @@ public class Puzzle5 {
                 .collect(Collectors.toList());
 
         System.out.println("The highest seat ID is " + boardingPassList.get(boardingPassList.size() - 1));
-        System.out.println("My seat ID is " + findMySeatID());
+        System.out.println("My seat is " + findMySeatID());
     }
 
     private BoardingPass findMySeatID() {

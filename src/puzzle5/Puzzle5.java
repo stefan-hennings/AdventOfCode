@@ -3,7 +3,7 @@ package puzzle5;
 import java.util.List;
 
 public class Puzzle5 {
-    List<BoardingPasses> boardingPassesList;
+    List<BoardingPass> boardingPassList;
 
     public Puzzle5() {
 

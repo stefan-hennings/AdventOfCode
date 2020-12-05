@@ -1,11 +1,11 @@
 package puzzle5;
 
-public class BoardingPasses {
+public class BoardingPass {
     int row = 0;
     int column = 0;
     int seatID;
 
-    public BoardingPasses(String string) {
+    public BoardingPass(String string) {
         calculateRow(string.substring(0, 7));
         calculateColumn(string.substring(7));
         seatID = row * column;

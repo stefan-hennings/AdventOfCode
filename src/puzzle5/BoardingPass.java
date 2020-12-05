@@ -30,4 +30,16 @@ public class BoardingPass {
             nextLetterValue /= 2;
         }
     }
+
+    public int getRow() {
+        return row;
+    }
+
+    public int getColumn() {
+        return column;
+    }
+
+    public int getSeatID() {
+        return seatID;
+    }
 }

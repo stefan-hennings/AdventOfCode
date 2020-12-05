@@ -2,7 +2,6 @@ package puzzle5;
 
 import utility.Utility;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 

@@ -4,7 +4,7 @@ public class BoardingPass implements Comparable<BoardingPass>{
     private String originalString;
     private int row = 0;
     private int column = 0;
-    private int seatID = 0;
+    private final int seatID;
 
     public BoardingPass(int seatID) {
         this.seatID = seatID;
@@ -47,9 +47,9 @@ public class BoardingPass implements Comparable<BoardingPass>{
     @Override
     public String toString() {
         if (originalString != null) {
-            return String.format("Row %d, column %d, seat ID %d, original string %s", row, column, seatID, originalString);
+            return String.format("row %d, column %d, seat ID %d, original string %s", row, column, seatID, originalString);
         } else {
-            return String.format("Row %d, column %d, seat ID %d", row, column, seatID);
+            return String.format("row %d, column %d, seat ID %d", row, column, seatID);
         }
     }
 

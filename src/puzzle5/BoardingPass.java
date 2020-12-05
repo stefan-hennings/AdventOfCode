@@ -45,16 +45,4 @@ public class BoardingPass implements Comparable<BoardingPass>{
     public String toString() {
         return String.format("Row %d, column %d, seat ID %d, original string %s", row, column, seatID, originalString);
     }
-
-    public int getRow() {
-        return row;
-    }
-
-    public int getColumn() {
-        return column;
-    }
-
-    public int getSeatID() {
-        return seatID;
-    }
 }

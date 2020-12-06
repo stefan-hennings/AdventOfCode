@@ -2,11 +2,12 @@ package puzzle6;
 
 import utility.Utility;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class Puzzle6 {
     List<String> allGroups = Utility.readStringFile("puzzle6");
-    int[] answers = new int[26];
+    int[] yesAnswers = new int[26];
     public Puzzle6() {
         allGroups.add("");
         part1();
@@ -18,13 +19,13 @@ public class Puzzle6 {
         for (String line : allGroups) {
             if (!line.equals("")) {
                 for (int i = 0; i < line.length(); i++) {
-                    answers[line.charAt(i) - 97]++; //increment array index based on ASCII value
+                    yesAnswers[line.charAt(i) - 97]++; //increment array index based on ASCII value
                 }
             } else {
-                for (int i = 0; i < answers.length; i++) {
-                    if (answers[i] > 0) {
+                for (int i = 0; i < yesAnswers.length; i++) {
+                    if (yesAnswers[i] > 0) {
                         sum++;
-                        answers[i] = 0;
+                        yesAnswers[i] = 0;
                     }
                 }
             }
@@ -39,15 +40,15 @@ public class Puzzle6 {
             if (!line.equals("")) {
                 groupMembers++;
                 for (int i = 0; i < line.length(); i++) {
-                    answers[line.charAt(i) - 97]++; //increment array index based on ASCII value
+                    yesAnswers[line.charAt(i) - 97]++; //increment array index based on ASCII value
                 }
             } else {
-                for (int i = 0; i < answers.length; i++) {
-                    if (answers[i] == groupMembers) {
+                for (int yesAnswer : yesAnswers) {
+                    if (yesAnswer == groupMembers) {
                         sum++;
                     }
-                    answers[i] = 0;
                 }
+                Arrays.fill(yesAnswers, 0);
                 groupMembers = 0;
             }
         }

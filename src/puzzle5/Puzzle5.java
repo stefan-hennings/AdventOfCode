@@ -23,7 +23,7 @@ public class Puzzle5 {
         System.out.println("Max seat ID is " + seatIdList.get(seatIdList.size() - 1));
 
         for (int i = 0; i < seatIdList.size(); i++) {
-            if (seatIdList.get(i+1) - seatIdList.get(i) == 2) { //<--------------
+            if (seatIdList.get(i+1) - seatIdList.get(i) == 2) {
                 System.out.println("Your seat ID is " + (seatIdList.get(i) + 1));
                 break;
             }

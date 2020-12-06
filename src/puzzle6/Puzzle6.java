@@ -35,7 +35,6 @@ public class Puzzle6 {
     private void part2() {
         int sum = 0;
         int groupMembers = 0;
-        int group = 0;
         for (String line : allGroups) {
             if (!line.equals("")) {
                 groupMembers++;

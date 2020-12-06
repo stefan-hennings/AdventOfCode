@@ -10,8 +10,8 @@ public class Puzzle5 {
     List<Integer> seatIdList;
 
     public Puzzle5() {
-//        nonBinaryMethod();
-        binaryMethod();
+        nonBinaryMethod();  //For some reason, non-binary runs in about half the time
+//        binaryMethod();
     }
 
     private void binaryMethod() {
@@ -23,7 +23,7 @@ public class Puzzle5 {
         System.out.println("Max seat ID is " + seatIdList.get(seatIdList.size() - 1));
 
         for (int i = 0; i < seatIdList.size(); i++) {
-            if (seatIdList.get(i+1) - seatIdList.get(i) == 2) {
+            if (seatIdList.get(i+1) - seatIdList.get(i) == 2) { //<--------------
                 System.out.println("Your seat ID is " + (seatIdList.get(i) + 1));
                 break;
             }
@@ -54,6 +54,8 @@ public class Puzzle5 {
     }
 
     public static void main(String[] args) {
+        long startTime = System.nanoTime();
         new Puzzle5();
+        System.out.printf("Execution time: %f milliseconds%n", ((double) System.nanoTime() - startTime) / 1000000);
     }
 }

@@ -23,7 +23,12 @@ public class Bag {
     private void createChildBags(String inData) {
         String[] childBagArray = inData.split(",");
 
+        if (childBagArray[0].trim().startsWith("no")) {
+            return;
+        }
+
         childBags = Arrays.stream(childBagArray)
+                .map(String::trim)
                 .map(bag -> new Bag(Integer.parseInt(bag.substring(0, bag.indexOf(" "))),
                         bag.substring(bag.indexOf(" "))))
                 .collect(Collectors.toList());

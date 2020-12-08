@@ -71,33 +71,22 @@ public class Bag {
         return false;
     }
 
-//    public boolean hasNotBeenChecked() {
-//        Puzzle7.checkedBags.contains()
-//        return true;
-//    }
+    public boolean hasNotBeenChecked() {
+        if (Puzzle7.checkedBags.contains(this)) {
+            return false;
+        } else {
+            Puzzle7.checkedBags.add(this);
+            return true;
+        }
+    }
 
     public long getParentBags() {
-        long l =
-//        List<Bag> collect =
-                Puzzle7.allBags.stream()
-//                        .filter(bag -> bag.getColor().equals(color) )
-                        .filter(bag -> bag.containsBag(this.color))
-                        .filter(bag -> {
-                            if (Puzzle7.checkedBags.contains(bag)) {
-                                return false;
-                            } else {
-                                Puzzle7.checkedBags.add(bag);
-                                return true;
-                            }
-                        })
-//                .collect(Collectors.toList());
-                        .map(Bag::getParentBags)
-                        .reduce(0L, Long::sum);
-        System.out.println(this);
-//        System.out.println(collect);
-//        long l = 10;
+        long l = Puzzle7.allBags.stream()
+                .filter(bag -> bag.containsBag(this.color))
+                .filter(Bag::hasNotBeenChecked)
+                .map(Bag::getParentBags)
+                .reduce(0L, Long::sum);
         l++;
-        System.out.println(l);
         return l;
     }
 }

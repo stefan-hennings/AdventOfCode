@@ -24,7 +24,7 @@ public class Puzzle7 {
     }
 
     public static void main(String[] args) {
-//        ExecutionTime.start();
+        ExecutionTime.start();
         System.out.println(allBags.stream()
                 .filter(bag -> bag.color.equals("shiny gold bag"))
                 .map(Bag::getParentBags)
@@ -32,7 +32,6 @@ public class Puzzle7 {
         System.out.println(allBags.stream()
                 .filter(bag -> bag.color.equals("shiny gold bag"))
                 .findFirst());
-//        allBags.forEach(System.out::println);
-//        ExecutionTime.stop();
+        ExecutionTime.stop();
     }
 }

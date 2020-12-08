@@ -3,18 +3,19 @@ package puzzle7;
 import utility.ExecutionTime;
 import utility.Utility;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Puzzle7 {
-    static final List<Bag> allBags = readBags();
+    public static final List<Bag> allBags = readBags();
+    public static final List<Bag> checkedBags = new ArrayList<>();
 
-    public Puzzle7() {
-        allBags.forEach(System.out::println);
-    }
+    static final String filename = "puzzle7";
+//    static final String filename = "test";
 
     private static List<Bag> readBags() {
-        return Utility.readStringFile("puzzle7").stream()
+        return Utility.readStringFile(filename).stream()
                 .map(string -> string.replaceAll(" contain ", ","))
                 .map(string -> string.replace(".", ""))
                 .map(Bag::new)
@@ -23,8 +24,15 @@ public class Puzzle7 {
     }
 
     public static void main(String[] args) {
-        ExecutionTime.start();
-        new Puzzle7();
-        ExecutionTime.stop();
+//        ExecutionTime.start();
+        System.out.println(allBags.stream()
+                .filter(bag -> bag.color.equals("shiny gold bag"))
+                .map(Bag::getParentBags)
+                .reduce(0L, Long::sum)-1);
+        System.out.println(allBags.stream()
+                .filter(bag -> bag.color.equals("shiny gold bag"))
+                .findFirst());
+//        allBags.forEach(System.out::println);
+//        ExecutionTime.stop();
     }
 }

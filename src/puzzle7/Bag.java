@@ -7,10 +7,6 @@ import java.util.stream.Collectors;
 public class Bag {
     public String color;
 
-    public String getColor() {
-        return color;
-    }
-
     private int quantityInParentBag;  //Will only be set on childBags
     private List<Bag> childBags;
 
@@ -26,9 +22,6 @@ public class Bag {
     public Bag(int quantityInParentBag, String color) {
         this.quantityInParentBag = quantityInParentBag;
         this.color = color;
-        if (color.charAt(color.length() - 1) == 's') {
-            color = color.substring(0, color.length() - 1);
-        }
     }
 
     private void createChildBags(String inData) {
@@ -48,10 +41,6 @@ public class Bag {
                             bag.substring(bag.indexOf(" ")).trim());
                 })
                 .collect(Collectors.toList());
-    }
-
-    public List<Bag> getChildBags() {
-        return childBags;
     }
 
     @Override
@@ -81,12 +70,32 @@ public class Bag {
     }
 
     public long getParentBags() {
-        long l = Puzzle7.allBags.stream()
+        return Puzzle7.allBags.stream()
                 .filter(bag -> bag.containsBag(this.color))
                 .filter(Bag::hasNotBeenChecked)
                 .map(Bag::getParentBags)
-                .reduce(0L, Long::sum);
-        l++;
-        return l;
+                .reduce(0L, Long::sum) + 1;
+    }
+
+    public List<Bag> loadChildBags() {
+        Bag foundBag = Puzzle7.allBags.stream()
+                .filter(bag -> bag.color.equals(this.color))
+                .findFirst()
+                .orElseThrow();
+        this.childBags = foundBag.childBags;
+        return childBags;
+    }
+
+    public long countAllSubBags() {
+        if (childBags == null) {
+            return 1;
+        }
+        long subBagsSum = 0;
+        for (Bag childBag : childBags) {
+            childBag.loadChildBags();
+            subBagsSum += childBag.quantityInParentBag * childBag.countAllSubBags();
+        }
+        subBagsSum++;
+        return subBagsSum;
     }
 }

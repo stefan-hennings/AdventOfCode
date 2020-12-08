@@ -77,13 +77,12 @@ public class Bag {
                 .reduce(0L, Long::sum) + 1;
     }
 
-    public List<Bag> loadChildBags() {
+    public void loadChildBags() {
         Bag foundBag = Puzzle7.allBags.stream()
                 .filter(bag -> bag.color.equals(this.color))
                 .findFirst()
                 .orElseThrow();
         this.childBags = foundBag.childBags;
-        return childBags;
     }
 
     public long countAllSubBags() {

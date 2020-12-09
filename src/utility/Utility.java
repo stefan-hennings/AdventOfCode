@@ -24,7 +24,7 @@ public class Utility {
     }
 
     public static List<String> readStringFile(String filename) {
-        List<String> stringList = new ArrayList<>();
+        List<String> stringList = new ArrayList<>(500);
         try {
             stringList = Files.readAllLines(Path.of(folder + filename));
         } catch (IOException e) {

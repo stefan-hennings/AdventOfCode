@@ -1,17 +1,17 @@
 package Day1to9.puzzle4;
 
+import utility.ExecutionTime;
 import utility.Utility;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Puzzle4 {
-    List<String> rawPassportList = Utility.readStringFile("Day1-9\\puzzle4.bat");
+    List<String> rawPassportList = Utility.readStringFile("Day1to9\\puzzle4.bat");
     List<Passport> passportList = new ArrayList<>();
 
 
     public Puzzle4() {
-//        rawPassportList.forEach(System.out::println);
         processPassports();
         System.out.println(countValidPasswords() + " valid passwords.");
 
@@ -24,17 +24,14 @@ public class Puzzle4 {
             if (!line.equals("")) {
                 processLine(line, passport);
             } else {
-                System.out.println("Adding passport : " + passport);
                 passportList.add(passport);
                 passport = new Passport();
             }
         }
-        System.out.println("Adding final passport: " + passport);
         passportList.add(passport);
     }
 
     private void processLine(String line, Passport passport) {
-        System.out.println("Processing line " + line);
         String[] split = line.split(" ");
         for (String data : split) {
             passport.setValue(data);
@@ -54,6 +51,8 @@ public class Puzzle4 {
     }
 
     public static void main(String[] args) {
+        ExecutionTime.start();
         new Puzzle4();
+        ExecutionTime.stop();
     }
 }

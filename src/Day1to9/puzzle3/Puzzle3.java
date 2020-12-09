@@ -1,17 +1,17 @@
 package Day1to9.puzzle3;
 
+import utility.ExecutionTime;
 import utility.Utility;
 
 import java.util.List;
 
 public class Puzzle3 {
-    private final List<String> map = Utility.readStringFile("Day1-9\\puzzle3");
+    String filename = "Day1to9\\puzzle3";
+    private final List<String> map = Utility.readStringFile(filename);
 
     public Puzzle3() {
-//        System.out.println("The sled hit " + checkSlope(3, 1) + " trees.");
-
-        List<String> slopes = Utility.readStringFile("puzzle3Part2Slopes");
-        System.out.println(slopes);
+        List<String> slopes = Utility.readStringFile(filename + "Part2Slopes");
+        System.out.println(checkSlope(3, 1));
 
         System.out.println(checkMultipleSlopes(slopes));
     }
@@ -41,6 +41,8 @@ public class Puzzle3 {
     }
 
     public static void main(String[] args) {
+        ExecutionTime.start();
         new Puzzle3();
+        ExecutionTime.stop();
     }
 }

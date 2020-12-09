@@ -7,13 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Puzzle8 {
-    String fileName = "Day1-9\\puzzle8";
+    String fileName = "Day1to9\\puzzle8";
     String test = "test";
     List<String> instructionList = Utility.readStringFile(fileName);
     int accumulator = 0;
     int instructionIterator = -1;
     int alteredIterator;
-    int alteredAcc;
+    int alteredAccumulator;
     List<Integer> performed = new ArrayList<>(200);
 
     public Puzzle8() {
@@ -35,11 +35,9 @@ public class Puzzle8 {
 
     private void executeInstruction(String instruction) {
         switch (instruction.substring(0, 3)) {
-            case "nop" -> {
-            } //Do nothing
-            case "acc" -> {
-                accumulator += Integer.parseInt(instruction.substring(4));
+            case "nop" -> { //Do nothing
             }
+            case "acc" -> accumulator += Integer.parseInt(instruction.substring(4));
             case "jmp" -> instructionIterator += Integer.parseInt(instruction.substring(4)) - 1;
         }
     }
@@ -64,26 +62,20 @@ public class Puzzle8 {
 
     private boolean tryWithAlteredCommand() {
         alteredIterator = instructionIterator - 1;
-        alteredAcc = accumulator;
+        alteredAccumulator = accumulator;
         List<Integer> performedInAltered = new ArrayList<>(50);
 
         List<String> alteredList = new ArrayList<>(instructionList);
         if (instructionList.get(instructionIterator).startsWith("jmp")) {
-            alteredList.set(instructionIterator, instructionList.get(instructionIterator).replace("jmp", "nop"));
-//            alteredList.get(instructionIterator).replace("jmp", "nop");
+            alteredList.set(instructionIterator, alteredList.get(instructionIterator).replace("jmp", "nop"));
         } else {
-            alteredList.set(instructionIterator, instructionList.get(instructionIterator).replace("nop", "jmp"));
-//            alteredList.get(instructionIterator).replace("nop", "jmp");
+            alteredList.set(instructionIterator, alteredList.get(instructionIterator).replace("nop", "jmp"));
         }
-
-        instructionList = Utility.readStringFile(fileName);
-
-
 
         while (true) {
             alteredIterator++;
             if (alteredIterator == instructionList.size()) {
-                System.out.printf("The accumulator ended at %d after changing command %d%n", alteredAcc, instructionIterator);
+                System.out.printf("The accumulator ended at %d after changing command %d%n", alteredAccumulator, instructionIterator);
                 return true;
             }
             if (performedInAltered.contains(alteredIterator)) {
@@ -95,14 +87,10 @@ public class Puzzle8 {
     }
 
     private void executeAlteredInstruction(String instruction) {
-//        System.out.println("Execute altered " + instruction);
         switch (instruction.substring(0, 3)) {
-            case "nop" -> {
-            } //Do nothing
-            case "acc" -> {
-                alteredAcc += Integer.parseInt(instruction.substring(4));
-//                System.out.println(alteredAcc);
+            case "nop" -> { //Do nothing
             }
+            case "acc" -> alteredAccumulator += Integer.parseInt(instruction.substring(4));
             case "jmp" -> alteredIterator += Integer.parseInt(instruction.substring(4)) - 1;
         }
     }

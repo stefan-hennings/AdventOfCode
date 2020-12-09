@@ -1,12 +1,13 @@
 package Day1to9.puzzle1;
 
+import utility.ExecutionTime;
 import utility.Utility;
 
 import java.util.Collections;
 import java.util.List;
 
 public class Puzzle1 {
-    List<Integer> expenses = Utility.readIntegerFile("Day1-9\\puzzle1");
+    List<Integer> expenses = Utility.readIntegerFile("Day1to9\\puzzle1");
 
     public Puzzle1() {
         Collections.sort(expenses);
@@ -17,7 +18,7 @@ public class Puzzle1 {
         System.out.printf("Found %d, %d and %d. Final product is %d%n", threeFactors[0], threeFactors[1], threeFactors[2],
                 threeFactors[0] * threeFactors[1] * threeFactors[2]);
 
-        int[] threeFactorsNew = findThreeFactorsNew(2020);
+        int[] threeFactorsNew = findThreeFactorsAlternate(2020);
         System.out.printf("Found %d, %d and %d. Final product is %d%n", threeFactorsNew[0], threeFactorsNew[1], threeFactorsNew[2],
                 threeFactorsNew[0] * threeFactorsNew[1] * threeFactorsNew[2]);
     }
@@ -49,7 +50,7 @@ public class Puzzle1 {
         return null;
     }
 
-    public int[] findThreeFactorsNew(int targetValue) {
+    public int[] findThreeFactorsAlternate(int targetValue) {
         int smallIndex = 0;
         int bigIndex = expenses.size() - 1;
         int sum;
@@ -69,9 +70,8 @@ public class Puzzle1 {
     }
 
     public static void main(String[] args) {
-        long startTime = System.nanoTime();
+        ExecutionTime.start();
         new Puzzle1();
-        System.out.printf("Execution time: %f milliseconds%n", ((double) System.nanoTime() - startTime) / 1000000);
-        System.out.println();
+        ExecutionTime.stop();
     }
 }

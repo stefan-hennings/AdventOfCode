@@ -1,5 +1,6 @@
 package Day1to9.puzzle5;
 
+import utility.ExecutionTime;
 import utility.Utility;
 
 import java.util.List;
@@ -8,15 +9,18 @@ import java.util.stream.Collectors;
 public class Puzzle5 {
     List<BoardingPass> boardingPassList;
     List<Integer> seatIdList;
+    String filename = "Day1to9\\puzzle5";
 
     public Puzzle5() {
-        nonBinaryMethod();  //For some reason, non-binary runs in about half the time
-//        binaryMethod();
+//        nonBinaryMethod();  //Non-binary runs in about half the time
+        binaryMethod();
     }
 
     private void binaryMethod() {
-        seatIdList = Utility.readStringFile("Day1-9\\puzzle5").stream()
-                .map(this::calculateSeatId)
+        seatIdList = Utility.readStringFile(filename).stream()
+                //convert to binary, then binary to decimal
+                .map(string -> string.replaceAll("[FL]", "0").replaceAll("[BR]", "1"))
+                .map(string -> Integer.parseInt(string, 2))
                 .sorted()
                 .collect(Collectors.toList());
 
@@ -30,12 +34,8 @@ public class Puzzle5 {
         }
     }
 
-    private int calculateSeatId(String seatString) {
-        return Integer.parseInt(seatString.replaceAll("[FL]", "0").replaceAll("[BR]", "1"), 2);
-    }
-
     private void nonBinaryMethod() {
-        boardingPassList = Utility.readStringFile("Day1to9/puzzle5").stream()
+        boardingPassList = Utility.readStringFile(filename).stream()
                 .map(BoardingPass::new)
                 .sorted()
                 .collect(Collectors.toList());
@@ -54,8 +54,8 @@ public class Puzzle5 {
     }
 
     public static void main(String[] args) {
-        long startTime = System.nanoTime();
+        ExecutionTime.start();
         new Puzzle5();
-        System.out.printf("Execution time: %f milliseconds%n", ((double) System.nanoTime() - startTime) / 1000000);
+        ExecutionTime.stop();
     }
 }

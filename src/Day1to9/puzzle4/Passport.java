@@ -4,27 +4,7 @@ public class Passport {
     String height, hairColor, eyeColor, passportId, countryId;
     int birthYear, issueYear, expirationYear;
 
-    static int counter = 0;
-
-    public Passport() {
-    }
-
-    @Override
-    public String toString() {
-        return "Passport{" +
-                "birthYear='" + birthYear + '\'' +
-                ", issueYear='" + issueYear + '\'' +
-                ", expirationYear='" + expirationYear + '\'' +
-                ", height='" + height + '\'' +
-                ", hairColor='" + hairColor + '\'' +
-                ", eyeColor='" + eyeColor + '\'' +
-                ", passportId='" + passportId + '\'' +
-                ", countryId='" + countryId + '\'' +
-                '}';
-    }
-
     public void setValue(String string) {
-        System.out.println("Setting value: " + string);
         String type = string.substring(0, 3);
         String input = string.substring(4);
         switch (type) {
@@ -46,7 +26,6 @@ public class Passport {
     }
 
     public boolean isValidPassportForPart2() {
-        System.out.println(++counter);
         return hasValidBirthDate() && hasValidIssueDate() && hasValidExpirationDate() && hasValidHeight()
                 && hasValidHairColor() && hasValidEyeColor() && hasValidPassportId();
     }

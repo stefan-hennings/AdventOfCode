@@ -3,7 +3,7 @@ package Day1to9.puzzle3;
 public class Sled {
     private int row;
     private int column;
-    private int mapWidth;
+    private final int mapWidth;
 
     public Sled(int mapWidth) {
         this.row = 0;
@@ -25,11 +25,6 @@ public class Sled {
                 "row=" + row +
                 ", column=" + column +
                 '}';
-    }
-
-    public void setPosition(int row, int column) {
-        this.row = row;
-        this.column = column;
     }
 
     public void move(int right, int down) {

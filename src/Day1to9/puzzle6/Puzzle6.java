@@ -1,12 +1,13 @@
 package Day1to9.puzzle6;
 
+import utility.ExecutionTime;
 import utility.Utility;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class Puzzle6 {
-    List<String> allGroups = Utility.readStringFile("Day1-9\\puzzle6");
+    List<String> allGroups = Utility.readStringFile("Day1to9\\puzzle6");
     int[] yesAnswers = new int[26];
     public Puzzle6() {
         allGroups.add("");
@@ -56,8 +57,8 @@ public class Puzzle6 {
     }
 
     public static void main(String[] args) {
-        long startTime = System.nanoTime();
+        ExecutionTime.start();
         new Puzzle6();
-        System.out.printf("Execution time: %f milliseconds%n", ((double) System.nanoTime() - startTime) / 1000000);
+        ExecutionTime.stop();
     }
 }

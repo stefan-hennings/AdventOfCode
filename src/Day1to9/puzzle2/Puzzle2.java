@@ -1,11 +1,13 @@
 package Day1to9.puzzle2;
 
+import utility.ExecutionTime;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Puzzle2 {
     List<Password> passwordList;
-    List<String> rawDataList = utility.Utility.readStringFile("Day1-9\\puzzle2");
+    List<String> rawDataList = utility.Utility.readStringFile("Day1to9\\puzzle2");
 
     public Puzzle2() {
         passwordList = rawDataList.stream()
@@ -26,8 +28,8 @@ public class Puzzle2 {
     }
 
     public static void main(String[] args) {
-        long startTime = System.nanoTime();
+        ExecutionTime.start();
         new Puzzle2();
-        System.out.printf("Execution time: %f milliseconds%n", ((double) System.nanoTime() - startTime) / 1000000);
+        ExecutionTime.stop();
     }
 }

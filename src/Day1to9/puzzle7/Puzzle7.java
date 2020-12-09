@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Puzzle7 {
-    static final String filename = "Day1-9\\puzzle7";
+    static final String filename = "Day1to9\\puzzle7";
 
     private static final List<Bag> allBags = readBags(filename);
 
@@ -34,6 +34,7 @@ public class Puzzle7 {
 
     public static void main(String[] args) {
         ExecutionTime.start();
+
         System.out.println((allBags.stream()
                 .filter(bag -> bag.getColor().equals("shiny gold bag"))
                 .map(Bag::getParentBags)

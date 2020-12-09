@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Bag {
-    public String color;
+    private String color;
 
     private int quantityInParentBag;  //Will only be set on childBags
     private List<Bag> childBags;
@@ -61,24 +61,28 @@ public class Bag {
     }
 
     public boolean hasNotBeenChecked() {
-        if (Puzzle7.checkedBags.contains(this)) {
+        if (Puzzle7.getCheckedBags().contains(this)) {
             return false;
         } else {
-            Puzzle7.checkedBags.add(this);
+            Puzzle7.getCheckedBags().add(this);
             return true;
         }
     }
 
     public long getParentBags() {
-        return Puzzle7.allBags.stream()
+        return Puzzle7.getAllBags().stream()
                 .filter(bag -> bag.containsBag(this.color))
                 .filter(Bag::hasNotBeenChecked)
                 .map(Bag::getParentBags)
                 .reduce(0L, Long::sum) + 1;
     }
 
+    public String getColor() {
+        return color;
+    }
+
     public void loadChildBags() {
-        Bag foundBag = Puzzle7.allBags.stream()
+        Bag foundBag = Puzzle7.getAllBags().stream()
                 .filter(bag -> bag.color.equals(this.color))
                 .findFirst()
                 .orElseThrow();

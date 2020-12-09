@@ -10,6 +10,7 @@ import java.util.List;
 
 public class Utility {
     static String folder = "PuzzleInputs\\";
+
     public static List<Integer> readIntegerFile(String filename) {
         List<Integer> integerList = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(folder + filename))) {
@@ -22,6 +23,20 @@ public class Utility {
         }
         return integerList;
     }
+
+    public static List<Long> readLongFile(String filename) {
+        List<Long> longList = new ArrayList<>();
+        try (BufferedReader reader = new BufferedReader(new FileReader(folder + filename))) {
+            String nextLine;
+            while ((nextLine = reader.readLine()) != null) {
+                longList.add(Long.parseLong(nextLine));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return longList;
+    }
+
 
     public static List<String> readStringFile(String filename) {
         List<String> stringList = new ArrayList<>(500);

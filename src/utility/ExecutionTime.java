@@ -8,6 +8,6 @@ public class ExecutionTime {
     }
 
     public static void stop() {
-        System.out.printf("Execution time: %f milliseconds%n", ((double) System.nanoTime() - startTime) / 1000000);
+        System.out.printf("%nExecution time: %f milliseconds%n", ((double) System.nanoTime() - startTime) / 1000000);
     }
 }

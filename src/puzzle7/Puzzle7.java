@@ -12,8 +12,17 @@ public class Puzzle7 {
 //    static final String test = "test";
 //    static final String test2 = "test2";
 
-    public static List<Bag> allBags = readBags(filename);
-    public static final List<Bag> checkedBags = new ArrayList<>();
+    private static final List<Bag> allBags = readBags(filename);
+
+    public static List<Bag> getAllBags() {
+        return allBags;
+    }
+
+    public static List<Bag> getCheckedBags() {
+        return checkedBags;
+    }
+
+    private static final List<Bag> checkedBags = new ArrayList<>();
 
 
     private static List<Bag> readBags(String s) {
@@ -28,12 +37,12 @@ public class Puzzle7 {
     public static void main(String[] args) {
         ExecutionTime.start();
         System.out.println((allBags.stream()
-                .filter(bag -> bag.color.equals("shiny gold bag"))
+                .filter(bag -> bag.getColor().equals("shiny gold bag"))
                 .map(Bag::getParentBags)
                 .reduce(0L, Long::sum) - 1) + " bags contain a shiny gold bag");
 
         System.out.println("1 shiny gold contains: " + (allBags.stream()
-                .filter(bag -> bag.color.equals("shiny gold bag"))
+                .filter(bag -> bag.getColor().equals("shiny gold bag"))
                 .map(Bag::countAllSubBags)
                 .reduce(0L, Long::sum) - 1));
 

@@ -25,7 +25,7 @@ public class Puzzle5 {
         for (int i = 0; i < seatIdList.size(); i++) {
             if (seatIdList.get(i+1) - seatIdList.get(i) == 2) {
                 System.out.println("Your seat ID is " + (seatIdList.get(i) + 1));
-                break;
+                return;
             }
         }
     }

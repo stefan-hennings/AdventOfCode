@@ -1,4 +1,4 @@
-package puzzle3;
+package Day1to9.puzzle3;
 
 public class Sled {
     private int row;

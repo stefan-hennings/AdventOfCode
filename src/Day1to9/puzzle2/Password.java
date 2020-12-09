@@ -1,4 +1,4 @@
-package puzzle2;
+package Day1to9.puzzle2;
 
 public class Password {
     private final int lowLimit;

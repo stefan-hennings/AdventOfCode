@@ -1,4 +1,4 @@
-package puzzle4;
+package Day1to9.puzzle4;
 
 public class Passport {
     String height, hairColor, eyeColor, passportId, countryId;

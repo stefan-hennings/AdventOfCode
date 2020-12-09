@@ -1,4 +1,4 @@
-package puzzle5;
+package Day1to9.puzzle5;
 
 public class BoardingPass implements Comparable<BoardingPass>{
     private String originalString;

@@ -12,7 +12,7 @@ public class Utility {
     static String folder = "PuzzleInputs\\";
 
     public static List<Integer> readIntegerFile(String filename) {
-        List<Integer> integerList = new ArrayList<>();
+        List<Integer> integerList = new ArrayList<>(500);
         try (BufferedReader reader = new BufferedReader(new FileReader(folder + filename))) {
             String nextLine;
             while ((nextLine = reader.readLine()) != null) {
@@ -25,7 +25,7 @@ public class Utility {
     }
 
     public static List<Long> readLongFile(String filename) {
-        List<Long> longList = new ArrayList<>();
+        List<Long> longList = new ArrayList<>(500);
         try (BufferedReader reader = new BufferedReader(new FileReader(folder + filename))) {
             String nextLine;
             while ((nextLine = reader.readLine()) != null) {

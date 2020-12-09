@@ -1,4 +1,4 @@
-package puzzle9;
+package Day1to9.puzzle9;
 
 import utility.ExecutionTime;
 import utility.Utility;
@@ -12,7 +12,7 @@ public class Puzzle9 {
 
     public Puzzle9() {
         boolean testing = false;
-        String filename = testing ? "test" : "puzzle9";
+        String filename = testing ? "test" : "Day1-9\\Day1to9.puzzle9";
         preamble = testing ? 5 : 25;
         allNumbers = Utility.readLongFile(filename);
 

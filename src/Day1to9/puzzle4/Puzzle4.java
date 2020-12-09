@@ -1,4 +1,4 @@
-package puzzle4;
+package Day1to9.puzzle4;
 
 import utility.Utility;
 
@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Puzzle4 {
-    List<String> rawPassportList = Utility.readStringFile("puzzle4.bat");
+    List<String> rawPassportList = Utility.readStringFile("Day1-9\\puzzle4.bat");
     List<Passport> passportList = new ArrayList<>();
 
 

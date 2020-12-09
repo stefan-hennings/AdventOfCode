@@ -1,4 +1,4 @@
-package puzzle7;
+package Day1to9.puzzle7;
 
 import utility.ExecutionTime;
 import utility.Utility;
@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Puzzle7 {
-    static final String filename = "puzzle7";
+    static final String filename = "Day1-9\\puzzle7";
 
     private static final List<Bag> allBags = readBags(filename);
 

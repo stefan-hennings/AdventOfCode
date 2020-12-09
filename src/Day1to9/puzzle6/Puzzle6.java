@@ -1,4 +1,4 @@
-package puzzle6;
+package Day1to9.puzzle6;
 
 import utility.Utility;
 
@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Puzzle6 {
-    List<String> allGroups = Utility.readStringFile("puzzle6");
+    List<String> allGroups = Utility.readStringFile("Day1-9\\puzzle6");
     int[] yesAnswers = new int[26];
     public Puzzle6() {
         allGroups.add("");

@@ -1,4 +1,4 @@
-package puzzle1;
+package Day1to9.puzzle1;
 
 import utility.Utility;
 
@@ -6,7 +6,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class Puzzle1 {
-    List<Integer> expenses = Utility.readIntegerFile("puzzle1");
+    List<Integer> expenses = Utility.readIntegerFile("Day1-9\\puzzle1");
 
     public Puzzle1() {
         Collections.sort(expenses);
@@ -17,9 +17,9 @@ public class Puzzle1 {
         System.out.printf("Found %d, %d and %d. Final product is %d%n", threeFactors[0], threeFactors[1], threeFactors[2],
                 threeFactors[0] * threeFactors[1] * threeFactors[2]);
 
-//        int[] threeFactorsNew = findThreeFactorsNew(2020);
-//        System.out.printf("Found %d, %d and %d. Final product is %d%n", threeFactorsNew[0], threeFactorsNew[1], threeFactorsNew[2],
-//                threeFactorsNew[0] * threeFactorsNew[1] * threeFactorsNew[2]);
+        int[] threeFactorsNew = findThreeFactorsNew(2020);
+        System.out.printf("Found %d, %d and %d. Final product is %d%n", threeFactorsNew[0], threeFactorsNew[1], threeFactorsNew[2],
+                threeFactorsNew[0] * threeFactorsNew[1] * threeFactorsNew[2]);
     }
 
     public int[] findTwoFactors(int targetValue) {
@@ -53,14 +53,11 @@ public class Puzzle1 {
         int smallIndex = 0;
         int bigIndex = expenses.size() - 1;
         int sum;
-//        int counter = 0;
         while (true) {
-//            counter++;
             sum = expenses.get(smallIndex) + expenses.get(bigIndex);
             if (sum > targetValue) {
                 bigIndex--;
             } else if (expenses.contains(targetValue-sum)) {
-//                System.out.println(counter);
                 return new int[]{targetValue-sum, expenses.get(smallIndex), expenses.get(bigIndex)};
             } else if (smallIndex >= bigIndex){
                 smallIndex++;

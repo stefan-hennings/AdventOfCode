@@ -1,11 +1,11 @@
-package puzzle3;
+package Day1to9.puzzle3;
 
 import utility.Utility;
 
 import java.util.List;
 
 public class Puzzle3 {
-    private final List<String> map = Utility.readStringFile("puzzle3");
+    private final List<String> map = Utility.readStringFile("Day1-9\\puzzle3");
 
     public Puzzle3() {
 //        System.out.println("The sled hit " + checkSlope(3, 1) + " trees.");

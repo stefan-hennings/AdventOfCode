@@ -1,11 +1,11 @@
-package puzzle2;
+package Day1to9.puzzle2;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Puzzle2 {
     List<Password> passwordList;
-    List<String> rawDataList = utility.Utility.readStringFile("puzzle2");
+    List<String> rawDataList = utility.Utility.readStringFile("Day1-9\\puzzle2");
 
     public Puzzle2() {
         passwordList = rawDataList.stream()

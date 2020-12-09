@@ -1,4 +1,4 @@
-package puzzle7;
+package Day1to9.puzzle7;
 
 import java.util.Arrays;
 import java.util.List;

@@ -1,4 +1,4 @@
-package puzzle5;
+package Day1to9.puzzle5;
 
 import utility.Utility;
 
@@ -15,7 +15,7 @@ public class Puzzle5 {
     }
 
     private void binaryMethod() {
-        seatIdList = Utility.readStringFile("puzzle5").stream()
+        seatIdList = Utility.readStringFile("Day1-9\\puzzle5").stream()
                 .map(this::calculateSeatId)
                 .sorted()
                 .collect(Collectors.toList());
@@ -35,7 +35,7 @@ public class Puzzle5 {
     }
 
     private void nonBinaryMethod() {
-        boardingPassList = Utility.readStringFile("puzzle5").stream()
+        boardingPassList = Utility.readStringFile("Day1to9/puzzle5").stream()
                 .map(BoardingPass::new)
                 .sorted()
                 .collect(Collectors.toList());

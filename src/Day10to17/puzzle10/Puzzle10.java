@@ -3,9 +3,7 @@ package Day10to17.puzzle10;
 import utility.ExecutionTime;
 import utility.Utility;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class Puzzle10 {
     String test1 = "test";
@@ -23,8 +21,7 @@ public class Puzzle10 {
 
         part1();
 
-        part2(); //Relies on the fact that there is *never* a difference of 2 between the original adapters without another one in between
-        //Also doesn't work if there is a block longer than 5 numbers
+        part2();
     }
 
     private void part1() {
@@ -36,30 +33,16 @@ public class Puzzle10 {
     }
 
     private void part2() {
-        for (int blockStart = 0; blockStart < adapters.size() - 1; blockStart++) {
-            if (adapters.get(blockStart + 1) - adapters.get(blockStart) < 3) {
-                blockStart = findBlockEnd(blockStart);
-            }
+        Map<Integer, Long> possiblePaths = new HashMap<>();
+        possiblePaths.put(-3, 1L);
+        for (int voltage : adapters) {
+            possiblePaths.put(voltage,
+                    possiblePaths.getOrDefault(voltage-1, 0L) +
+                    possiblePaths.getOrDefault(voltage-2, 0L) +
+                    possiblePaths.getOrDefault(voltage-3, 0L)
+            );
         }
-        System.out.println(totalPossiblePaths);
-    }
-
-    private int findBlockEnd(int blockStart) {
-        for (int blockEnd = blockStart + 1; blockEnd < adapters.size() - 1; blockEnd++) {
-            if (adapters.get(blockEnd + 1) - adapters.get(blockEnd) == 3) {
-                totalPossiblePaths *= findBlockPaths(blockStart, blockEnd);
-                return blockEnd;
-            }
-        }
-        throw new IllegalArgumentException("There is no block end");
-    }
-
-    private int findBlockPaths(int startIndex, int endIndex) {
-        int arrangementsInPath = 1;
-        for (int i = endIndex - startIndex - 1; i > 0; i--) {
-            arrangementsInPath += i;
-        }
-        return arrangementsInPath;
+        System.out.println(possiblePaths.get(adapters.get(adapters.size() - 1)));
     }
 
     public static void main(String[] args) {

@@ -13,6 +13,7 @@ public class Puzzle10 {
     String real = "Day10to17\\puzzle10";
 
     List<Integer> adapters;
+    long totalPossiblePaths = 1;
 
     public Puzzle10() {
         adapters = Utility.readIntegerFile(real);
@@ -22,9 +23,7 @@ public class Puzzle10 {
 
         part1();
 
-//        adapters.forEach(System.out::println);
-
-//        part2();
+        part2(); //Relies on the fact that there is *never* a difference of 2 between the original adapters without another one in between
     }
 
     private void part1() {
@@ -36,41 +35,30 @@ public class Puzzle10 {
     }
 
     private void part2() {
-        long arrangements = 1;
-
-        /*for (int i = 2; i < adapters.size(); i++) {
-            if (adapters.get(i) - adapters.get(i - 2) <= 3) {
-                System.out.println("Found one at " + adapters.get(i));
-//                if (i >= 3 && adapters.get(i) - adapters.get(i - 3) <= 3) {
-//                    arrangements *= 4;
-//                    System.out.println("And another!");
-//                } else {
-//                }
-                arrangements *= 2;
-                System.out.println(arrangements);
-            }
-        }*/
-        for (int blockStart = 1; blockStart < adapters.size(); blockStart++) {
+        for (int blockStart = 0; blockStart < adapters.size() - 1; blockStart++) {
             if (adapters.get(blockStart + 1) - adapters.get(blockStart) < 3) {
-                System.out.println("blockStart = " + blockStart);
-                arrangements = findBlockEnd(arrangements, blockStart);
+                blockStart = findBlockEnd(blockStart);
             }
         }
-        System.out.println(arrangements);
+        System.out.println(totalPossiblePaths);
     }
 
-    private long findBlockEnd(long arrangements, int blockStart) {
-        for (int blockEnd = blockStart + 1; blockEnd < adapters.size(); blockEnd++) {
+    private int findBlockEnd(int blockStart) {
+        for (int blockEnd = blockStart + 1; blockEnd < adapters.size() - 1; blockEnd++) {
             if (adapters.get(blockEnd + 1) - adapters.get(blockEnd) == 3) {
-                System.out.println("blockEnd = " + blockEnd);
-                arrangements *= findBlockPaths(blockStart, blockEnd);
+                totalPossiblePaths *= findBlockPaths(blockStart, blockEnd);
+                return blockEnd;
             }
         }
-        return arrangements;
+        throw new IllegalArgumentException("There is no block end");
     }
 
     private int findBlockPaths(int startIndex, int endIndex) {
-        return 1;
+        int arrangementsInPath = 1;
+        for (int i = endIndex - startIndex - 1; i > 0; i--) {
+            arrangementsInPath += i;
+        }
+        return arrangementsInPath;
     }
 
     public static void main(String[] args) {

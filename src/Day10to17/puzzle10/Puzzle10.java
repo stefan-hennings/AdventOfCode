@@ -24,6 +24,7 @@ public class Puzzle10 {
         part1();
 
         part2(); //Relies on the fact that there is *never* a difference of 2 between the original adapters without another one in between
+        //Also doesn't work if there is a block longer than 5 numbers
     }
 
     private void part1() {

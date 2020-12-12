@@ -28,10 +28,10 @@ public class Sled {
     }
 
     public void move(int right, int down) {
-        column += right;
-        if (column >= mapWidth) {
-            column -= mapWidth;
-        }
+        column = (column + right) % mapWidth;
+//        if (column >= mapWidth) {
+//            column -= mapWidth;
+//        }
         this.row += down;
     }
 }

@@ -12,8 +12,8 @@ public class Puzzle5 {
     String filename = "Day1to9\\puzzle5";
 
     public Puzzle5() {
-//        nonBinaryMethod();  //Non-binary runs in about half the time
-        binaryMethod();
+        nonBinaryMethod();  //Non-binary runs in about half the time
+//        binaryMethod();
     }
 
     private void binaryMethod() {

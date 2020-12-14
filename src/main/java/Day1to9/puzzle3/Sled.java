@@ -1,5 +1,8 @@
 package Day1to9.puzzle3;
 
+import lombok.Getter;
+
+@Getter
 public class Sled {
     private int row;
     private int column;
@@ -9,14 +12,6 @@ public class Sled {
         this.row = 0;
         this.column = 0;
         this.mapWidth = mapWidth;
-    }
-
-    public int getRow() {
-        return row;
-    }
-
-    public int getColumn() {
-        return column;
     }
 
     @Override

@@ -17,45 +17,42 @@ public class Puzzle13 {
         allBusses = Arrays.asList(strings.get(1).split(",").clone());
         part1(Integer.parseInt(strings.get(0)));
 
-//        busCycleTime();
-    }
-
-    private void busCycleTime() {
-        long product = 1;
-        for (String bus : allBusses) {
-            try {
-                product *= Integer.parseInt(bus);
-            } catch (NumberFormatException ignored) {
-            }
-        }
-        System.out.println("product = " + product);
-        for (String bus : allBusses) {
-            int busID;
-            try {
-                busID = Integer.parseInt(bus);
-                System.out.printf("Bus %d: %d%n", busID, product%busID);
-            } catch (NumberFormatException ignored) {
-            }
-        }
+        part2();
     }
 
     private void part1(long startTime) {
         long waitTime = Integer.MAX_VALUE;
         int earliestBus = 0;
         for (String bus : allBusses) {
-            int busID;
+            int busId;
             try {
-                busID = Integer.parseInt(bus);
+                busId = Integer.parseInt(bus);
             } catch (NumberFormatException e) {
                 continue;
             }
-            long timeToDeparture = (startTime % busID - busID) * -1;
+            long timeToDeparture = (startTime % busId - busId) * -1;
             if (timeToDeparture < waitTime) {
                 waitTime = timeToDeparture;
-                earliestBus = busID;
+                earliestBus = busId;
             }
         }
-        System.out.printf("Bus %d leaves in %d minutes. Result: %d%n", earliestBus, waitTime, earliestBus*waitTime);
+        System.out.printf("Bus %d leaves in %d minutes. Result: %d %n%n", earliestBus, waitTime, earliestBus*waitTime);
+    }
+
+    private void part2() {
+        long previousBussesProduct = 1L;
+        long earliestSyncedTime = 0;
+        for (int offset = 0; offset < allBusses.size(); offset++) {
+            if (allBusses.get(offset).equals("x")) {
+                continue;
+            }
+            int busId = Integer.parseInt(allBusses.get(offset));
+            while ((earliestSyncedTime + offset) % busId != 0) {
+                earliestSyncedTime += previousBussesProduct;
+            }
+            previousBussesProduct *= busId;
+        }
+        System.out.printf("The busses start leaving at %,d. %n", earliestSyncedTime);
     }
 
     public static void main(String[] args) {

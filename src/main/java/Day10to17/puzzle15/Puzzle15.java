@@ -47,8 +47,7 @@ public class Puzzle15 {
             e.printStackTrace();
         }
         for (int i = 0; i < stringArray.length - 1; i++) {
-            int temp = Integer.parseInt(stringArray[i]);
-            history[temp] = i + 1;
+            history[Integer.parseInt(stringArray[i])] = i + 1;
         }
     }
 

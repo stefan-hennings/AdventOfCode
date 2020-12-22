@@ -98,7 +98,7 @@ public class Puzzle18 {
             String addition = expression.substring(additionStart, additionEnd + 1);
             String[] additionArray = addition.split(" ");
             long result = Long.parseLong(additionArray[0]) + Long.parseLong(additionArray[2]);
-//            expression = expression.replace(addition, Long.toString(result));
+//            expression = expression.replace(addition, Long.toString(result)); This turns 7 + 7 + 8 * 77 + 7 into 14 + 8 * 714
             expression = expression.substring(0, additionStart) + result + expression.substring(additionEnd + 1);
         }
         return expression;

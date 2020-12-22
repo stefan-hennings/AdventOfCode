@@ -24,13 +24,11 @@ public class Puzzle14 {
     private void part1() {
         String mask = "";
         Map<Integer, Long> memory = new HashMap<>();
-        int counter = 0;
         for (String instruction : allInstructions) {
             int equalsIndex = instruction.indexOf("=");
             String type = instruction.substring(0, equalsIndex - 1);
             if (type.equals("mask")) {
                 mask = instruction.substring(equalsIndex + 2);
-                counter++;
             } else {
                 String beforeMask = Integer.toBinaryString(Integer.parseInt(instruction.substring(equalsIndex + 2)));
                 beforeMask = String.format("%36s", beforeMask).replace(" ", "0");

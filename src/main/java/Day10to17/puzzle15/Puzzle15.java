@@ -9,9 +9,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Puzzle15 {
-    String test = "PuzzleInputs\\test";
-    String test2 = "PuzzleInputs\\test2";
-    String real = "PuzzleInputs\\Day10to17\\puzzle15";
+    String test = "test";
+    String test2 = "test2";
+    String real = "Day10to17\\puzzle15";
 
     int[] history;
     Map<Integer, Integer> map = new HashMap<>();

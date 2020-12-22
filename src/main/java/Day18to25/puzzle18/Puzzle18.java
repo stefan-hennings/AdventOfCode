@@ -12,7 +12,7 @@ public class Puzzle18 {
     List<String> allExpressions;
     
     public Puzzle18() {
-        allExpressions = Utility.readStringFile(real);
+        allExpressions = Utility.readStringFile(test);
         
         part1();
         
@@ -36,7 +36,6 @@ public class Puzzle18 {
             String result = Long.toString(calculateExpressionPart1(parenthesis));
 //            expression = expression.replace("(" + parenthesis + ")", result);
             expression = expression.substring(0, parenthesisStart) + result + expression.substring(parenthesisEnd + 1);
-    
         }
         return expression;
     }

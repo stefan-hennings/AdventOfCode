@@ -2,9 +2,10 @@ package Day10to17.puzzle17;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
-
+@ToString
 public class Cube {
     private int x;
     private int y;

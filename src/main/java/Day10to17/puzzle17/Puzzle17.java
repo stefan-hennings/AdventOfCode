@@ -14,7 +14,7 @@ public class Puzzle17 {
     List<String> startingSlice;
     
     List<Cube> activeCubes;
-    List<Cube> adjacentCubes;
+    List<Cube> inactiveCubes;
     
     public Puzzle17() {
         startingSlice = Utility.readStringFile(test);
@@ -33,27 +33,37 @@ public class Puzzle17 {
                 }
             }
         }
-    
-        for (int i = 0; i < 6; i++) {
-            adjacentCubes = new ArrayList<>();
+        
+        activeCubes.forEach(System.out::println);
+        System.out.println();
+        
+        for (int i = 0; i < 1; i++) {
+            inactiveCubes = new ArrayList<>();
             for (Cube activeCube : activeCubes) {
                 processAdjacentCubes(activeCube);
             }
-        
+            System.out.println("Active cubes before removal: ");
+            activeCubes.forEach(System.out::println);
+            
             activeCubes.removeIf(cube -> cube.getActivations() == 2 || cube.getActivations() == 3);
-        
-            for (Cube cube : adjacentCubes) {
+            
+            System.out.println("Active cubes after removal: ");
+            activeCubes.forEach(System.out::println);
+            
+            
+            for (Cube cube : inactiveCubes) {
                 if (cube.getActivations() == 3) {
                     cube.setActive(true);
                     activeCubes.add(cube);
                 }
             }
-        
-            for (Cube activeCube : activeCubes) {
-                activeCube.setActivations(0);
-            }
+            
+//            for (Cube activeCube : activeCubes) {
+//                activeCube.setActivations(0);
+//            }
         }
-    
+
+//        activeCubes.forEach(System.out::println);
         System.out.println(activeCubes.size());
     }
     
@@ -71,33 +81,41 @@ public class Puzzle17 {
     }
     
     private void processCube(int x, int y, int z) {
-        Optional<Cube> optionalCube = getCubeFromAdjacentList(x, y, z);
+        Optional<Cube> optionalCube = getInactiveCube(x, y, z);
         if (optionalCube.isPresent()) {
             optionalCube.get().addActivation();
-        } else {
-            optionalCube = getCubeFromActiveList(x, y, z);
-            if (optionalCube.isPresent()) {
-                optionalCube.get().addActivation();
-            } else {
-                adjacentCubes.add(new Cube(x, y, z, false, 1));
-            }
+            return;
         }
+    
+        inactiveCubes.stream()
+                .filter(cube -> cube.getX() == x)
+                .filter(cube -> cube.getY() == y)
+                .filter(cube -> cube.getZ() == z)
+                .findFirst()
+                .ifPresentOrElse(Cube::addActivation, () -> inactiveCubes.add(new Cube(x, y, z, false, 1)));
+        /*optionalCube = getActiveCube(x, y, z);
+        if (optionalCube.isPresent()) {
+            optionalCube.get().addActivation();
+            activeCubes.get(activeCubes.indexOf(optionalCube.get())).addActivation();
+        } else {
+            inactiveCubes.add(new Cube(x, y, z, false, 1));
+        }*/
     }
     
     private void part2() {
     
     }
     
-    private Optional<Cube> getCubeFromAdjacentList(int x, int y, int z) {
-        return adjacentCubes.stream()
+    private Optional<Cube> getInactiveCube(int x, int y, int z) {
+        return inactiveCubes.stream()
                 .filter(cube -> cube.getX() == x)
                 .filter(cube -> cube.getY() == y)
                 .filter(cube -> cube.getZ() == z)
                 .findFirst();
     }
     
-    private Optional<Cube> getCubeFromActiveList(int x, int y, int z) {
-        return adjacentCubes.stream()
+    private Optional<Cube> getActiveCube(int x, int y, int z) {
+        return inactiveCubes.stream()
                 .filter(cube -> cube.getX() == x)
                 .filter(cube -> cube.getY() == y)
                 .filter(cube -> cube.getZ() == z)

@@ -3,8 +3,8 @@ package Day18to25.puzzle25;
 import utility.ExecutionTime;
 
 public class Puzzle25 {
-    String test = "PuzzleInputs\\test";
-    String real = "PuzzleInputs\\Day18to25\\puzzle25";
+    String test = "test";
+    String real = "Day18to25\\puzzle25";
 
     public Puzzle25() {
         part1();

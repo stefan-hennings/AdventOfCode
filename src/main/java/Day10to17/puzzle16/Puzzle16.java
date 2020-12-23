@@ -1,18 +1,20 @@
 package Day10to17.puzzle16;
 
+import lombok.Getter;
 import utility.ExecutionTime;
 import utility.Utility;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
 public class Puzzle16 {
     String test = "test";
     String real = "Day10to17\\puzzle16";
     
-    List<Rule> ruleList = new ArrayList<>();
-    Ticket myTicket;
-    List<Ticket> otherTickets = new ArrayList<>();
+    private List<Rule> ruleList = new ArrayList<>();
+    private Ticket myTicket;
+    private List<Ticket> otherTickets = new ArrayList<>();
 
     public Puzzle16() {
         initializeData();
@@ -24,7 +26,7 @@ public class Puzzle16 {
     
 
     private void initializeData() {
-        List<String> input = Utility.readStringFile(test);
+        List<String> input = Utility.readStringFile(real);
         final int READING_RULES = 0;
         final int READING_MY_TICKET = 1;
         final int READING_OTHER_TICKETS = 2;
@@ -46,9 +48,26 @@ public class Puzzle16 {
     }
     
     private void part1() {
-
+        int errorRate = 0;
+        for (Ticket ticket : otherTickets) {
+            for (int value : ticket.getValues()) {
+                if (!isValidValue(value)) {
+                    errorRate += value;
+                }
+            }
+        }
+        System.out.println("errorRate = " + errorRate);
     }
-
+    
+    private boolean isValidValue(int value) {
+        for (Rule rule : ruleList) {
+            if (rule.isInRange(value)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
     private void part2() {
 
     }

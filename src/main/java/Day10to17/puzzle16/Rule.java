@@ -20,9 +20,18 @@ public class Rule {
         String[] validRanges = input.substring(colonIndex + 2).split(" or ");
         for (String range : validRanges) {
             int dashIndex = range.indexOf('-');
-            final int lowLimit = Integer.parseInt(range.substring(0, dashIndex));
-            final int highLimit = Integer.parseInt(range.substring(dashIndex + 1));
+            int lowLimit = Integer.parseInt(range.substring(0, dashIndex));
+            int highLimit = Integer.parseInt(range.substring(dashIndex + 1));
             this.validRanges.add(new int[]{lowLimit, highLimit});
         }
+    }
+    
+    public boolean isInRange(int value) {
+        for (int[] range : validRanges) {
+            if (value >= range[0] && value <= range[1]) {
+                return true;
+            }
+        }
+        return false;
     }
 }

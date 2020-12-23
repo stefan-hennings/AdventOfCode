@@ -1,5 +1,10 @@
 package Day10to17.puzzle16;
 
+import lombok.Getter;
+import lombok.ToString;
+
+@Getter
+@ToString
 public class Ticket {
     int[] values;
     

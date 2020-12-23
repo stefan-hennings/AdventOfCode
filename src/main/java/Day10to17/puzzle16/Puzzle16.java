@@ -5,6 +5,8 @@ import utility.ExecutionTime;
 public class Puzzle16 {
     String test = "test";
     String real = "Day10to17\\puzzle16";
+    
+    
 
     public Puzzle16() {
         part1();

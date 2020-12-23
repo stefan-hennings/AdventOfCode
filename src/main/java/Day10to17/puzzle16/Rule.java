@@ -8,10 +8,10 @@ import java.util.List;
 
 @Getter
 @ToString
-public class Rule {
+public class Rule implements Comparable<Rule> {
     private String type;
     private List<int[]> validRanges = new ArrayList<>();
-    
+    private List<Integer> possiblePositions = new ArrayList<>();
     
     public Rule(String input) {
         int colonIndex = input.indexOf(':');
@@ -33,5 +33,18 @@ public class Rule {
             }
         }
         return false;
+    }
+    
+    public void addPossiblePosition(int position) {
+        possiblePositions.add(position);
+    }
+    
+    public void removePossiblePosition(int position) {
+        possiblePositions.removeIf(integer -> integer == position);
+    }
+    
+    @Override
+    public int compareTo(Rule o) {
+        return possiblePositions.size() - o.getPossiblePositions().size();
     }
 }

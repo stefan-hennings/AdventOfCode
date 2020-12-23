@@ -5,6 +5,7 @@ import utility.ExecutionTime;
 import utility.Utility;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Getter
@@ -53,6 +54,7 @@ public class Puzzle16 {
             for (int value : ticket.getValues()) {
                 if (!isValidValue(value)) {
                     errorRate += value;
+                    ticket.setInvalid(); //For part 2
                 }
             }
         }
@@ -69,9 +71,45 @@ public class Puzzle16 {
     }
     
     private void part2() {
-
+        otherTickets.removeIf(ticket -> !ticket.isValid());
+        for (Rule rule : ruleList) {
+            for (int position = 0; position < myTicket.getValues().length; position++) {
+                if (isValidRuleForPosition(rule, position)) {
+                    rule.addPossiblePosition(position);
+                }
+            }
+        }
+        Collections.sort(ruleList);
+        for (int i = 0; i < ruleList.size(); i++) {
+            if (ruleList.get(i).getPossiblePositions().size() != 1) {
+                throw new IllegalStateException("Possible positions not equal to 1 for rule " + ruleList.get(i));
+            }
+            removePositionFromRules(ruleList.get(i).getPossiblePositions().get(0), i + 1);
+        }
+        long product = 1;
+        for (Rule rule : ruleList) {
+            if (rule.getType().startsWith("departure")) {
+                product *= myTicket.getValues()[rule.getPossiblePositions().get(0)];
+            }
+        }
+        System.out.println("product = " + product);
     }
-
+    
+    private boolean isValidRuleForPosition(Rule rule, int position) {
+        for (Ticket ticket : otherTickets) {
+            if (!rule.isInRange(ticket.getValues()[position])) {
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    private void removePositionFromRules(int position, int fromRule) {
+        for (int i = fromRule; i < ruleList.size(); i++) {
+            ruleList.get(i).removePossiblePosition(position);
+        }
+    }
+    
     public static void main(String[] args) {
         ExecutionTime.start();
         new Puzzle16();

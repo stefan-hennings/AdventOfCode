@@ -6,7 +6,8 @@ import lombok.ToString;
 @Getter
 @ToString
 public class Ticket {
-    int[] values;
+    private int[] values;
+    private boolean isValid = true;
     
     public Ticket(String input) {
         String[] inputArray = input.split(",");
@@ -14,5 +15,9 @@ public class Ticket {
         for (int i = 0; i < inputArray.length; i++) {
             values[i] = Integer.parseInt(inputArray[i]);
         }
+    }
+    
+    public void setInvalid() {
+        isValid = false;
     }
 }

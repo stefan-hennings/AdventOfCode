@@ -13,16 +13,13 @@ public class Cube {
     private int y;
     private int z;
     @Setter
-    private boolean isActive;
-    @Setter
     private int adjacentActiveCubes = 0;
     
     
-    public Cube(int x, int y, int z, boolean isActive) {
+    public Cube(int x, int y, int z) {
         this.x = x;
         this.y = y;
         this.z = z;
-        this.isActive = isActive;
     }
     
 //    public Cube(int x, int y, int z, boolean isActive, int activations) {

@@ -80,27 +80,23 @@ public class Puzzle17 {
             return;
         }
     
-        activeCubes.stream()
-                .filter(cube -> cube.getX() == x)
-                .filter(cube -> cube.getY() == y)
-                .filter(cube -> cube.getZ() == z)
-                .findFirst()
-                .ifPresentOrElse(Cube::incrementAdjacentActiveCubes, () -> inactiveCubes.add(new Cube(x, y, z, 1)));
-        /*optionalCube = getActiveCube(x, y, z);
-        if (optionalCube.isPresent()) {
-            optionalCube.get().addActivation();
-            activeCubes.get(activeCubes.indexOf(optionalCube.get())).addActivation();
-        } else {
-            inactiveCubes.add(new Cube(x, y, z, false, 1));
-        }*/
+        Optional<Cube> found = Optional.empty();
+        for (Cube cube : activeCubes) {
+            if (cube.getX() == x && cube.getY() == y && cube.getZ() == z) {
+                found = Optional.of(cube);
+                break;
+            }
+        }
+        found.ifPresentOrElse(Cube::incrementAdjacentActiveCubes, () -> inactiveCubes.add(new Cube(x, y, z, 1)));
     }
     
     private Optional<Cube> getInactiveCube(int x, int y, int z) {
-        return inactiveCubes.stream()
-                .filter(cube -> cube.getX() == x)
-                .filter(cube -> cube.getY() == y)
-                .filter(cube -> cube.getZ() == z)
-                .findFirst();
+        for (Cube cube : inactiveCubes) {
+            if (cube.getX() == x && cube.getY() == y && cube.getZ() == z) {
+                return Optional.of(cube);
+            }
+        }
+        return Optional.empty();
     }
     
     private void part2() {
@@ -112,6 +108,7 @@ public class Puzzle17 {
                 }
             }
         }
+        System.out.println(activeCubes4D.size());
     
         for (int i = 0; i < 6; i++) {
             inactiveCubes4D = new ArrayList<>();
@@ -131,6 +128,7 @@ public class Puzzle17 {
                 activeCube.setAdjacentActiveCubes(0);
             }
             System.out.println("Complete iterations: " + (i + 1));
+            System.out.println(activeCubes4D.size());
         }
 
         System.out.println(activeCubes4D.size());
@@ -161,15 +159,9 @@ public class Puzzle17 {
     
         Optional<Cube4D> found = Optional.empty();
         for (Cube4D cube : activeCubes4D) {
-            if (cube.getX() == x) {
-                if (cube.getY() == y) {
-                    if (cube.getZ() == z) {
-                        if (cube.getW() == w) {
-                            found = Optional.of(cube);
-                            break;
-                        }
-                    }
-                }
+            if (cube.getX() == x && cube.getY() == y && cube.getZ() == z && cube.getW() == w) {
+                found = Optional.of(cube);
+                break;
             }
         }
         found.ifPresentOrElse(Cube::incrementAdjacentActiveCubes, () -> inactiveCubes4D.add(new Cube4D(x, y, z, w, false, 1)));

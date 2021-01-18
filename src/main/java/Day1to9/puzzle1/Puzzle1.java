@@ -18,9 +18,9 @@ public class Puzzle1 {
         System.out.printf("Found %d, %d and %d. Final product is %d%n", threeFactors[0], threeFactors[1], threeFactors[2],
                 threeFactors[0] * threeFactors[1] * threeFactors[2]);
 
-        int[] threeFactorsNew = findThreeFactorsAlternate(2020);
-        System.out.printf("Found %d, %d and %d. Final product is %d%n", threeFactorsNew[0], threeFactorsNew[1], threeFactorsNew[2],
-                threeFactorsNew[0] * threeFactorsNew[1] * threeFactorsNew[2]);
+//        int[] threeFactorsNew = findThreeFactorsAlternate(2020);
+//        System.out.printf("Found %d, %d and %d. Final product is %d%n", threeFactorsNew[0], threeFactorsNew[1], threeFactorsNew[2],
+//                threeFactorsNew[0] * threeFactorsNew[1] * threeFactorsNew[2]);
     }
 
     public int[] findTwoFactors(int targetValue) {

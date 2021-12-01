@@ -5,7 +5,7 @@ import utility.Utility
 
 fun main() {
     ExecutionTime.start()
-    val expenses = Utility.readIntegerFile("Day1to9\\puzzle1")
+    val expenses = Utility.readIntegerFile("AoC2020.Day1to9\\puzzle1")
 //        .sorted()
     expenses.sort()
 

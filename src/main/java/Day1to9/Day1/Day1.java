@@ -1,16 +1,26 @@
-package Day1to9;
+package Day1to9.Day1;
 
 import utility.ExecutionTime;
-import utility.Utility;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class Day1 {
-    String test = "test";
-    String real = "Day1to9\\day1";
+    String test = "PuzzleInputs/test";
+    String real = "src/main/java/Day1to9/input";
     
-//    List<Integer> input = Utility.readIntegerFile(real);
-    int[] input = Utility.readIntegerFile(real).stream()
-        .mapToInt(Integer::intValue)
-        .toArray();
+    int[] input;
+    
+    {
+        try {
+            input = Files.readAllLines(Paths.get(real)).stream()
+                .mapToInt(Integer::parseInt)
+                .toArray();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     
     public Day1(){
         ExecutionTime.start();

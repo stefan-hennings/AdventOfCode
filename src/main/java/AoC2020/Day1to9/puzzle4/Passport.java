@@ -16,7 +16,7 @@ public class Passport {
             case "ecl" -> eyeColor = input;
             case "pid" -> passportId = input;
             case "cid" -> countryId = input;
-            default -> throw new IllegalArgumentException(input + " is not a valid day1");
+            default -> throw new IllegalArgumentException(input + " is not a valid input");
         }
     }
 

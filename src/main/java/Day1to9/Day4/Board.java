@@ -49,7 +49,7 @@ public class Board {
     }
     
     private boolean isHorizontalWin(int row) {
-        for (int column = 0; column < 5; column++) {
+        for (int column = 0; column < grid[row].length; column++) {
             if (!drawnNumbers.contains(grid[row][column])) {
                 return false;
             }
@@ -58,8 +58,8 @@ public class Board {
     }
     
     private boolean isVerticalWin(int column) {
-        for (int row = 0; row < 5; row++) {
-            if (!drawnNumbers.contains(grid[row][column])) {
+        for (int[] ints : grid) {
+            if (!drawnNumbers.contains(ints[column])) {
                 return false;
             }
         }

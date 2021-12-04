@@ -28,9 +28,10 @@ public class Day4 {
         ExecutionTime.start();
     
         prepData();
-    
+
         System.out.println(part1());
         System.out.println(part2());
+//        bothParts();
         
         ExecutionTime.stop();
     }
@@ -46,6 +47,7 @@ public class Day4 {
         List<Board> boardList = new ArrayList<>();
         for (int i = 1; i < split.length; i++) {
             Board board = new Board(split[i]);
+            board.countNumbersNeededToWin(drawnNumbers);
             boardList.add(board);
         }
         boards = boardList.toArray(new Board[0]);
@@ -55,7 +57,7 @@ public class Day4 {
         int previousFastestWin = Integer.MAX_VALUE;
         Board leadingBoard = boards[0];
         for (Board currentBoard : boards) {
-            int numbersToWinCurrentBoard = currentBoard.countNumbersNeededToWin(drawnNumbers);
+            int numbersToWinCurrentBoard = currentBoard.getNumbersToWin();
             if (numbersToWinCurrentBoard < previousFastestWin) {
                 previousFastestWin = numbersToWinCurrentBoard;
                 leadingBoard = currentBoard;
@@ -75,6 +77,28 @@ public class Day4 {
             }
         }
         return leadingBoard.getWinningScore();
+    }
+    
+    
+    //Why is this slower?!
+    public void bothParts() {
+        int previousFastestWin = Integer.MAX_VALUE;
+        int previousSlowestWin = Integer.MIN_VALUE;
+        Board fastestWin = boards[0];
+        Board slowestWin = boards[0];
+        for (Board currentBoard : boards) {
+            int numbersToWinCurrentBoard = currentBoard.countNumbersNeededToWin(drawnNumbers);
+            if (numbersToWinCurrentBoard < previousFastestWin) {
+                previousFastestWin = numbersToWinCurrentBoard;
+                fastestWin = currentBoard;
+            }
+            if (numbersToWinCurrentBoard > previousSlowestWin) {
+                previousSlowestWin = numbersToWinCurrentBoard;
+                slowestWin = currentBoard;
+            }
+        }
+        System.out.printf("Part 1: %d%n" +
+                "Part 2: %d%n", fastestWin.getWinningScore(), slowestWin.getWinningScore());
     }
     
     public static void main(String[] args) {

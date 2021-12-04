@@ -10,8 +10,8 @@ import java.util.Set;
 public class Board {
     private int[][] grid = new int[5][5];
     private Map<Integer, Pair<Integer, Integer>> positionLookup = new HashMap<>();
-    private Set<Integer> pickedNumbers = new HashSet<>();
-    private int numbersToWin = Integer.MAX_VALUE;
+    private Set<Integer> drawnNumbers = new HashSet<>();
+    private int drawsToWin = Integer.MAX_VALUE;
     private int winningNumber = 0;
     
     
@@ -27,22 +27,21 @@ public class Board {
         }
     }
     
-    public int countNumbersNeededToWin(int[] numbers) {
+    public void countNumbersNeededToWin(int[] numbers) {
         for (int i = 0; i < numbers.length; i++) {
             int currentNumber = numbers[i];
             Pair<Integer, Integer> position = positionLookup.get(currentNumber);
             if (position != null) {
-                pickedNumbers.add(currentNumber);
+                drawnNumbers.add(currentNumber);
                 if (checkWin(position.component1(), position.component2())) {
-                    numbersToWin = i + 1;
+                    drawsToWin = i + 1;
                     winningNumber = currentNumber;
                     break;
                 }
             }
         }
-        
-        
-        return numbersToWin;
+    
+    
     }
     
     private boolean checkWin(int row, int column) {
@@ -51,7 +50,7 @@ public class Board {
     
     private boolean isHorizontalWin(int row) {
         for (int column = 0; column < 5; column++) {
-            if (!pickedNumbers.contains(grid[row][column])) {
+            if (!drawnNumbers.contains(grid[row][column])) {
                 return false;
             }
         }
@@ -60,7 +59,7 @@ public class Board {
     
     private boolean isVerticalWin(int column) {
         for (int row = 0; row < 5; row++) {
-            if (!pickedNumbers.contains(grid[row][column])) {
+            if (!drawnNumbers.contains(grid[row][column])) {
                 return false;
             }
         }
@@ -71,7 +70,7 @@ public class Board {
         int sum = 0;
         for (int[] row : grid) {
             for (int number : row) {
-                if (!pickedNumbers.contains(number)) {
+                if (!drawnNumbers.contains(number)) {
                     sum += number;
                 }
             }
@@ -85,12 +84,12 @@ public class Board {
     
     @Override
     public String toString() {
-        return "Board{numbersToWin=" + numbersToWin +
+        return "Board{numbersToWin=" + drawsToWin +
                 ", winningNumber=" + winningNumber +
                 '}';
     }
     
     public int getDrawsToWin() {
-        return numbersToWin;
+        return drawsToWin;
     }
 }

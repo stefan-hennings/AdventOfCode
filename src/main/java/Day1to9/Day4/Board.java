@@ -71,13 +71,11 @@ public class Board {
         int sum = 0;
         for (int[] row : grid) {
             for (int number : row) {
-                System.out.printf("number %d %s%n", number, pickedNumbers.contains(number) ? "ignored":"added");
                 if (!pickedNumbers.contains(number)) {
                     sum += number;
                 }
             }
         }
-        System.out.println("sum = " + sum);
         return sum;
     }
     
@@ -90,5 +88,9 @@ public class Board {
         return "Board{numbersToWin=" + numbersToWin +
                 ", winningNumber=" + winningNumber +
                 '}';
+    }
+    
+    public int getNumbersToWin() {
+        return numbersToWin;
     }
 }

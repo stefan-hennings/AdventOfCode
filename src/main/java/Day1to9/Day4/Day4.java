@@ -30,9 +30,6 @@ public class Day4 {
         prepData();
     
         System.out.println(part1());
-        
-        prepData();
-        
         System.out.println(part2());
         
         ExecutionTime.stop();
@@ -41,7 +38,6 @@ public class Day4 {
     private void prepData() {
         String[] split = input.split("\\r\\n\\r\\n");
         String[] stringNumbers = split[0].split(",");
-        System.out.println();
         drawnNumbers = new int[stringNumbers.length];
         for (int i = 0; i < stringNumbers.length; i++) {
             drawnNumbers[i] = Integer.parseInt(stringNumbers[i]);
@@ -71,19 +67,13 @@ public class Day4 {
     public int part2() {
         int previousSlowestWin = Integer.MIN_VALUE;
         Board leadingBoard = boards[0];
-        int counter = 1;
-        int lastBoard = 0;
         for (Board currentBoard : boards) {
-            int numbersToWinCurrentBoard = currentBoard.countNumbersNeededToWin(drawnNumbers);
-            counter++;
+            int numbersToWinCurrentBoard = currentBoard.getNumbersToWin();
             if (numbersToWinCurrentBoard > previousSlowestWin) {
                 previousSlowestWin = numbersToWinCurrentBoard;
                 leadingBoard = currentBoard;
-                lastBoard = counter;
             }
         }
-        System.out.println(leadingBoard);
-        System.out.println("last board " + lastBoard);
         return leadingBoard.getWinningScore();
     }
     

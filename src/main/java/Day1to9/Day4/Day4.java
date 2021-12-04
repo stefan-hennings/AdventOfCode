@@ -54,46 +54,46 @@ public class Day4 {
     }
     
     public int part1() {
-        int previousFastestWin = Integer.MAX_VALUE;
-        Board leadingBoard = boards[0];
+        Board fastestBoard = boards[0];
+        int previousFewestDraws = fastestBoard.getDrawsToWin();
         for (Board currentBoard : boards) {
-            int numbersToWinCurrentBoard = currentBoard.getNumbersToWin();
-            if (numbersToWinCurrentBoard < previousFastestWin) {
-                previousFastestWin = numbersToWinCurrentBoard;
-                leadingBoard = currentBoard;
+            int drawsToWinCurrentBoard = currentBoard.getDrawsToWin();
+            if (drawsToWinCurrentBoard < previousFewestDraws) {
+                previousFewestDraws = drawsToWinCurrentBoard;
+                fastestBoard = currentBoard;
             }
         }
-        return leadingBoard.getWinningScore();
+        return fastestBoard.getWinningScore();
     }
     
     public int part2() {
-        int previousSlowestWin = Integer.MIN_VALUE;
-        Board leadingBoard = boards[0];
+        Board slowestBoard = boards[0];
+        int previousMostDraws = slowestBoard.getDrawsToWin();
         for (Board currentBoard : boards) {
-            int numbersToWinCurrentBoard = currentBoard.getNumbersToWin();
-            if (numbersToWinCurrentBoard > previousSlowestWin) {
-                previousSlowestWin = numbersToWinCurrentBoard;
-                leadingBoard = currentBoard;
+            int drawsToWinCurrentBoard = currentBoard.getDrawsToWin();
+            if (drawsToWinCurrentBoard > previousMostDraws) {
+                previousMostDraws = drawsToWinCurrentBoard;
+                slowestBoard = currentBoard;
             }
         }
-        return leadingBoard.getWinningScore();
+        return slowestBoard.getWinningScore();
     }
     
     
     //Why is this slower?!
     public void bothParts() {
-        int previousFastestWin = Integer.MAX_VALUE;
-        int previousSlowestWin = Integer.MIN_VALUE;
         Board fastestWin = boards[0];
         Board slowestWin = boards[0];
+        int fastestBoard = fastestWin.getDrawsToWin();
+        int slowestBoard = slowestWin.getDrawsToWin();
         for (Board currentBoard : boards) {
-            int numbersToWinCurrentBoard = currentBoard.countNumbersNeededToWin(drawnNumbers);
-            if (numbersToWinCurrentBoard < previousFastestWin) {
-                previousFastestWin = numbersToWinCurrentBoard;
+            int drawsToWinCurrentBoard = currentBoard.getDrawsToWin();
+            if (drawsToWinCurrentBoard < fastestBoard) {
+                fastestBoard = drawsToWinCurrentBoard;
                 fastestWin = currentBoard;
             }
-            if (numbersToWinCurrentBoard > previousSlowestWin) {
-                previousSlowestWin = numbersToWinCurrentBoard;
+            if (drawsToWinCurrentBoard > slowestBoard) {
+                slowestBoard = drawsToWinCurrentBoard;
                 slowestWin = currentBoard;
             }
         }

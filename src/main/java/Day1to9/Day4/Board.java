@@ -90,7 +90,7 @@ public class Board {
                 '}';
     }
     
-    public int getNumbersToWin() {
+    public int getDrawsToWin() {
         return numbersToWin;
     }
 }
